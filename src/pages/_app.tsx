@@ -2,7 +2,6 @@ import React from 'react'
 import NextApp from 'next/app'
 import { ThemeProvider, createGlobalStyle } from 'styled-components'
 import reset from "styled-reset";
-import { ToastProvider } from 'react-toast-notifications';
 
 const theme = {
   primary: 'green',
@@ -78,18 +77,12 @@ export default class App extends NextApp {
   render() {
     const { Component, pageProps } = this.props
     return (
-      <ToastProvider
-          autoDismiss
-          autoDismissTimeout={6000}
-          placement="bottom-center"
-      >
-        <ThemeProvider theme={theme}>
-          <>
-            <GlobalStyles />
-            <Component {...pageProps} />
-          </>
-        </ThemeProvider>
-      </ToastProvider>
+      <ThemeProvider theme={theme}>
+        <>
+          <GlobalStyles />
+          <Component {...pageProps} />
+        </>
+      </ThemeProvider>
     )
   }
 }
