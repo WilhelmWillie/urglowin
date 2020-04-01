@@ -12,7 +12,7 @@ const HeaderSection = () => {
           </Column>
 
           <Column width={"49%"}>
-            <p>Look good &amp; feel good – care for your skin and satisfy your curiosity by looking for products and ingredients that work for you. Learn about 100+ products.</p>
+            <p>Look good &amp; feel good – care for your skin and satisfy your curiosity by looking for products and ingredients that work for you. Learn about 50+ products.</p>
           </Column>
         </Row>
       </Container>

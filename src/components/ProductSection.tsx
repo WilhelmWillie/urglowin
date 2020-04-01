@@ -18,8 +18,8 @@ const ProductSection = ({ products } : ProductSectionProps) => {
   let ProductElements;
 
   if (products) {
-    ProductElements = products.map((item : Product, index : number) => (
-      <Product
+    ProductElements = products.map((item : Product, index : number) => {
+      return <Product
         key={index}
         img={item.img}
         brand={item.brand}
@@ -27,7 +27,7 @@ const ProductSection = ({ products } : ProductSectionProps) => {
         category={item.category}
         usedFor={item.usedFor}
       />
-    ))
+    })
   }
 
   return (
@@ -42,13 +42,15 @@ const ProductSection = ({ products } : ProductSectionProps) => {
 }
 
 const Product = (props : Product) => {
+  const UsedFor = props.usedFor.split(",").map(usedFor => <ProductUsedFor>{usedFor}</ProductUsedFor>)
+
   return (
     <ProductWrapper>
       <ProductImg src={props.img} alt={props.productName} />
 
       <ProductBrand>{props.brand}</ProductBrand>
       <ProductName>{props.productName}</ProductName>
-      <ProductUsedFor>{props.usedFor.split(",")[0]}</ProductUsedFor>
+      {UsedFor}
     </ProductWrapper>
   )
 }
@@ -78,22 +80,24 @@ const ProductWrapper = styled.div`
   background: #FFFFFF;
   padding: 16px;
   box-sizing: border-box;
-  margin-bottom: 18px;
 `;
 
 const ProductImg = styled.img`
-  max-height: 150px;
-  margin: 0 auto 18px;
-  text-align: center;
+  max-height: 180px;
+  margin: 0 auto 24px;
+  display: block;
 `;
 
 const ProductBrand = styled.h3`
   color: #BBBBBB;
   text-transform: uppercase;
+  font-size: 18px;
+  margin-bottom: 8px;
 `;
 
 const ProductName = styled.h3`
   color: #555555;
+  font-size: 18px;
 `;
 
 const ProductUsedFor = styled.span`
@@ -104,6 +108,7 @@ const ProductUsedFor = styled.span`
   margin-top: 8px;
   border-radius: 4px;
   flex: 0;
+  margin-right: 8px;
 `;
 
 export default ProductSection;

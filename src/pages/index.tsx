@@ -14,8 +14,8 @@ const Home = (props) => {
 };
 
 Home.getInitialProps = async ({req}) => {
-  const absoluteUrl = process.env.URL || 'http://localhost:3000/api/products';
-  const url = req ? absoluteUrl : '/api/products';
+  const host = process.env.URL || 'http://localhost:3000';
+  const url = req ? `${host}/api/products` : '/api/products';
   const res = await fetch(url);
   const data = await res.json();
 
