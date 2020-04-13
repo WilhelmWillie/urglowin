@@ -9,9 +9,9 @@ type ProductSectionProps = {
 type Product = {
   productName: string;
   brand: string;
-  img: string;
+  imageUrl: string;
   category: string;
-  usedFor: string;
+  usedFor: Array<string>;
 }
 
 const ProductSection = ({ products } : ProductSectionProps) => {
@@ -21,7 +21,7 @@ const ProductSection = ({ products } : ProductSectionProps) => {
     ProductElements = products.map((item : Product, index : number) => {
       return <Product
         key={index}
-        img={item.img}
+        imageUrl={item.imageUrl}
         brand={item.brand}
         productName={item.productName}
         category={item.category}
@@ -42,11 +42,11 @@ const ProductSection = ({ products } : ProductSectionProps) => {
 }
 
 const Product = (props : Product) => {
-  const UsedFor = props.usedFor.split(",").map(usedFor => <ProductUsedFor>{usedFor}</ProductUsedFor>)
+  const UsedFor = props.usedFor.map(usedFor => <ProductUsedFor>{usedFor}</ProductUsedFor>)
 
   return (
     <ProductWrapper>
-      <ProductImg src={props.img} alt={props.productName} />
+      <ProductImg src={props.imageUrl} alt={props.productName} />
 
       <ProductBrand>{props.brand}</ProductBrand>
       <ProductName>{props.productName}</ProductName>

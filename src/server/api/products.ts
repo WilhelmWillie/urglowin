@@ -3,19 +3,13 @@ import csv from "csv-parser";
 import fs from "fs";
 import path from "path";
 
+import Product from "../models/product";
+
 const router = express.Router();
 
-router.get("/", (req : Request, res : Response) => {
-  const response = [];
-
-  fs.createReadStream(path.join(__dirname, "products.csv"), "utf8")
-    .pipe(csv())
-    .on('data', (row) => {
-      response.push(row);
-    })
-    .on('end', () => {
-      return res.json({products: response});
-    });
+router.get("/", async (req : Request, res : Response) => {
+  const products = await Product.find({});
+  return res.json({products});
 });
 
 export default router;
