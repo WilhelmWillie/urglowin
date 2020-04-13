@@ -8,8 +8,7 @@
     "build:server": "tsc --project tsconfig.server.json",
     "build:next": "next build",
     "build": "npm run build:next && npm run build:server",
-    "start": "NODE_ENV=production node dist/index.js",
-    "postbuild": "cp src/server/api/products.csv dist/api/products.csv"
+    "start": "NODE_ENV=production node dist/index.js"
   },
   "keywords": [],
   "author": "",
