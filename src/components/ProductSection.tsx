@@ -14,6 +14,8 @@ type Product = {
   imageUrl: string;
   category: string;
   usedFor: Array<string>;
+  fullIngredientList: Array<string>;
+  regularPrice: number;
 }
 
 const ProductSection = ({ products } : ProductSectionProps) => {
@@ -39,6 +41,8 @@ const ProductSection = ({ products } : ProductSectionProps) => {
         productName={item.productName}
         category={item.category}
         usedFor={item.usedFor}
+        fullIngredientList={item.fullIngredientList}
+        regularPrice={item.regularPrice}
       />
     })
   }
@@ -56,15 +60,45 @@ const ProductSection = ({ products } : ProductSectionProps) => {
 }
 
 const Product = (props : Product) => {
-  const UsedFor = props.usedFor.map((usedFor, index) => <ProductUsedFor key={`puf-${index}`}>{usedFor}</ProductUsedFor>)
+  const IngredientPreview = (
+    <>
+      <TopIngredient>{props.fullIngredientList[0]}</TopIngredient>
+      <RemainingIngredients>+ {props.fullIngredientList.length - 1} more...</RemainingIngredients>
+    </>
+  );
+
+  let ProductPriceIndicator;
+
+  if (props.regularPrice < 20) {
+    ProductPriceIndicator = (
+      <ProductPrice><b>$</b>$$</ProductPrice>
+    )
+  } else if (props.regularPrice >= 20 && props.regularPrice <= 40) {
+    ProductPriceIndicator = (
+      <ProductPrice><b>$$</b>$</ProductPrice>
+    )
+  } else {
+    ProductPriceIndicator = (
+      <ProductPrice><b>$$</b>$</ProductPrice>
+    )
+  }
 
   return (
     <ProductWrapper>
-      <ProductImg src={props.imageUrl} alt={props.productName} />
+      <ProductPreview>
+        <ProductImg src={props.imageUrl} alt={props.productName} />
+        <ProductDetails>
+          <ProductUsedFor>{props.usedFor[0]}</ProductUsedFor>
+          {IngredientPreview}
+        </ProductDetails>
+      </ProductPreview>
 
-      <ProductBrand>{props.brand}</ProductBrand>
+      <ProductBrandPrice>
+        <ProductBrand>{props.brand}</ProductBrand>
+        {ProductPriceIndicator}
+      </ProductBrandPrice>
       <ProductName>{props.productName}</ProductName>
-      {UsedFor}
+
     </ProductWrapper>
   )
 }
@@ -96,10 +130,32 @@ const ProductWrapper = styled.div`
   box-sizing: border-box;
 `;
 
+const ProductPreview = styled.div`
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  padding-bottom: 16px;
+`;
+
+const ProductDetails = styled.div`
+  width: 50%;
+  flex-basis: 50%;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  padding-left: 16px;
+`;
+
 const ProductImg = styled.img`
-  max-height: 180px;
-  margin: 0 auto 24px;
   display: block;
+  max-height: 150px;
+  max-width: 50%;
+`;
+
+const ProductBrandPrice = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 `;
 
 const ProductBrand = styled.h3`
@@ -107,6 +163,16 @@ const ProductBrand = styled.h3`
   text-transform: uppercase;
   font-size: 18px;
   margin-bottom: 8px;
+  display: inline-block;
+`;
+
+const ProductPrice = styled.span`
+  font-size: 14px;
+  color: #888888;
+
+  b {
+    color: #73CB5F;
+  }
 `;
 
 const ProductName = styled.h3`
@@ -114,15 +180,39 @@ const ProductName = styled.h3`
   font-size: 18px;
 `;
 
+const TopIngredient = styled.h3`
+  color: #1E1E1E;
+  font-size: 18px;
+  margin-top: 8px;
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  display: block;
+  text-overflow: ellipsis;
+  text-transform: uppercase;
+  font-weight: 600;
+`;
+
+const RemainingIngredients = styled.h4`
+  color: #888888;
+  font-size: 14px;
+  margin-top: 8px;
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  display: block;
+  text-overflow: ellipsis;
+  text-transform: uppercase;
+  font-weight: 600;
+`;
+
 const ProductUsedFor = styled.span`
   color: #FFFFFF;
   padding: 8px;
   background-color: #73CB5F;
-  display: inline-block;
-  margin-top: 8px;
   border-radius: 4px;
-  flex: 0;
-  margin-right: 8px;
+  flex-shrink: 1;
+  align-self: flex-start;
 `;
 
 export default ProductSection;
