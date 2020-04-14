@@ -1,6 +1,8 @@
+import React, { useContext } from "react";
 import styled from "styled-components";
 
 import { Container, Row, Column } from "./style";
+import { SearchStore } from "../stores";
 
 type ProductSectionProps = {
   products?: Array<Object>;
@@ -15,12 +17,23 @@ type Product = {
 }
 
 const ProductSection = ({ products } : ProductSectionProps) => {
-  let ProductElements;
+  const searchState = useContext(SearchStore);
+  const { state } = searchState;
+  
+  let ProductElements, CategoryElements;
 
   if (products) {
-    ProductElements = products.map((item : Product, index : number) => {
+    const filteredProducts = products.filter((product : Product) => {
+      if (state.category && state.category !== 'All') {
+        return product.category === state.category;
+      }
+
+      return true;
+    });
+
+    ProductElements = filteredProducts.map((item : any, index : number) => {
       return <Product
-        key={index}
+        key={`p-${item._id}`}
         imageUrl={item.imageUrl}
         brand={item.brand}
         productName={item.productName}
@@ -34,6 +47,7 @@ const ProductSection = ({ products } : ProductSectionProps) => {
     <Wrapper>
       <Container>
         <Gallery>
+          {CategoryElements}
           {ProductElements}
         </Gallery>
       </Container>
@@ -42,7 +56,7 @@ const ProductSection = ({ products } : ProductSectionProps) => {
 }
 
 const Product = (props : Product) => {
-  const UsedFor = props.usedFor.map(usedFor => <ProductUsedFor>{usedFor}</ProductUsedFor>)
+  const UsedFor = props.usedFor.map((usedFor, index) => <ProductUsedFor key={`puf-${index}`}>{usedFor}</ProductUsedFor>)
 
   return (
     <ProductWrapper>

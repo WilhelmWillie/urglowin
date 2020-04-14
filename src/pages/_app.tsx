@@ -2,6 +2,7 @@ import React from 'react'
 import NextApp from 'next/app'
 import { ThemeProvider, createGlobalStyle } from 'styled-components'
 import reset from "styled-reset";
+import { AppProvider, SearchProvider } from '../stores';
 
 const theme = {
   primary: 'green',
@@ -78,10 +79,14 @@ export default class App extends NextApp {
     const { Component, pageProps } = this.props
     return (
       <ThemeProvider theme={theme}>
-        <>
-          <GlobalStyles />
-          <Component {...pageProps} />
-        </>
+        <AppProvider>
+          <SearchProvider>
+            <>
+              <GlobalStyles />
+              <Component {...pageProps} />
+            </>
+          </SearchProvider>
+        </AppProvider>
       </ThemeProvider>
     )
   }

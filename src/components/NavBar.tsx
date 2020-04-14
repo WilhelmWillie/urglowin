@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import Link from "next/link";
 
 import { Container } from "./style";
 
@@ -8,7 +9,9 @@ const NavBar = () => {
   return (
     <Wrapper>
       <Container>
-        <Logo src={LogoSVG} />
+        <Link href="/">
+          <Logo src={LogoSVG} />
+        </Link>
       </Container>
     </Wrapper>
   )
@@ -20,6 +23,7 @@ const Wrapper = styled.div`
 
 const Logo = styled.img`
   height: 24px;
+  cursor: pointer;
 `;
 
 export default NavBar;
