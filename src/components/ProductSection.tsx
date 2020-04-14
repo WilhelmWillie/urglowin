@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
+import Link from "next/link";
 
 import { Container, Row, Column } from "./style";
 import { SearchStore } from "../stores";
@@ -9,6 +10,7 @@ type ProductSectionProps = {
 }
 
 type Product = {
+  _id: string;
   productName: string;
   brand: string;
   imageUrl: string;
@@ -35,6 +37,7 @@ const ProductSection = ({ products } : ProductSectionProps) => {
 
     ProductElements = filteredProducts.map((item : any, index : number) => {
       return <Product
+        _id={item._id}
         key={`p-${item._id}`}
         imageUrl={item.imageUrl}
         brand={item.brand}
@@ -84,22 +87,24 @@ const Product = (props : Product) => {
   }
 
   return (
-    <ProductWrapper>
-      <ProductPreview>
-        <ProductImg src={props.imageUrl} alt={props.productName} />
-        <ProductDetails>
-          <ProductUsedFor>{props.usedFor[0]}</ProductUsedFor>
-          {IngredientPreview}
-        </ProductDetails>
-      </ProductPreview>
+    <Link href={`/product/${props._id}`}>
+      <ProductWrapper>
+        <ProductPreview>
+          <ProductImg src={props.imageUrl} alt={props.productName} />
+          <ProductDetails>
+            <ProductUsedFor>{props.usedFor[0]}</ProductUsedFor>
+            {IngredientPreview}
+          </ProductDetails>
+        </ProductPreview>
 
-      <ProductBrandPrice>
-        <ProductBrand>{props.brand}</ProductBrand>
-        {ProductPriceIndicator}
-      </ProductBrandPrice>
-      <ProductName>{props.productName}</ProductName>
+        <ProductBrandPrice>
+          <ProductBrand>{props.brand}</ProductBrand>
+          {ProductPriceIndicator}
+        </ProductBrandPrice>
+        <ProductName>{props.productName}</ProductName>
 
-    </ProductWrapper>
+      </ProductWrapper>
+    </Link>
   )
 }
 
@@ -128,6 +133,12 @@ const ProductWrapper = styled.div`
   background: #FFFFFF;
   padding: 16px;
   box-sizing: border-box;
+  transition: 0.1s all;
+
+  &:hover {
+    transform: scale(1.03);
+    cursor: pointer;
+  }
 `;
 
 const ProductPreview = styled.div`
@@ -135,6 +146,7 @@ const ProductPreview = styled.div`
   align-items: center;
   flex-direction: row;
   padding-bottom: 16px;
+  justify-content: space-between;
 `;
 
 const ProductDetails = styled.div`

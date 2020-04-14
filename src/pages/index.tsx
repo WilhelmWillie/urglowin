@@ -2,7 +2,7 @@ import React, { useEffect, useContext  } from 'react';
 
 import fetch from "isomorphic-unfetch";
 
-import { NavBar, MetaTags, HeaderSection, ProductSection, SearchFilter, SearchBox } from "../components";
+import { NavBar, MetaTags, HeaderSection, ProductSection, SearchFilter, SearchBox, Footer } from "../components";
 import { SearchStore } from "../stores";
 
 const Home = ({ products, categories, query}) => {
@@ -21,6 +21,7 @@ const Home = ({ products, categories, query}) => {
       <HeaderSection />
       <SearchFilter categories={categories} />
       <ProductSection products={products} />
+      <Footer />
     </>
   )
 };
