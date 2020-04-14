@@ -177,7 +177,7 @@ const ProductPrice = styled.span`
 
 const ProductName = styled.h3`
   color: #555555;
-  font-size: 18px;
+  font-size: 14px;
 `;
 
 const TopIngredient = styled.h3`
