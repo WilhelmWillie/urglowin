@@ -15,14 +15,6 @@ router.get("/", async (req : Request, res : Response) => {
   return res.json({products});
 });
 
-router.get("/:id", async (req : Request, res : Response) => {
-  const { id } = req.params;
-
-  const product = await Product.findOne({_id: id});
-
-  return res.json({product});
-});
-
 router.get("/categories", async (req : Request, res : Response) => {
   const products = await Product.find({});
   const categories = new Set();
@@ -32,6 +24,14 @@ router.get("/categories", async (req : Request, res : Response) => {
   });
 
   return res.json({categories: Array.from(categories)});
+});
+
+router.get("/:id", async (req : Request, res : Response) => {
+  const { id } = req.params;
+
+  const product = await Product.findOne({_id: id});
+
+  return res.json({product});
 });
 
 export default router;
