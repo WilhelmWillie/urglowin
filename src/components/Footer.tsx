@@ -42,6 +42,10 @@ const Logo = styled.img`
 const CopyrightAndLogo = styled.div`
   display: flex;
   flex-direction: row;
+
+  p {
+    font-size: 14px;
+  }
 `;
 
 const SocialLink = styled.a``;
