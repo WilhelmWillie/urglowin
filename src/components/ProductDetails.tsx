@@ -80,7 +80,7 @@ const ProductHeader = styled.h1`
 
 const ProductDescriptionHeader = styled.h3`
   font-family: GintoNord;
-  font-size: 18px;
+  font-size: 14px;
   color: #555555;
   margin: 24px 0 16px;
   text-transform: uppercase;
