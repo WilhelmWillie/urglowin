@@ -17,7 +17,7 @@ const Home = ({ products, categories, query}) => {
     <>
       <MetaTags />
       <NavBar />
-      <SearchBox />
+      {/*<SearchBox />*/}
       <HeaderSection />
       <SearchFilter categories={categories} />
       <ProductSection products={products} />
