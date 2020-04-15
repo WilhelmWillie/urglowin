@@ -6,3 +6,7 @@ export { default as SearchFilter } from "./SearchFilter";
 export { default as SearchBox } from "./SearchBox";
 export { default as ProductDetails } from "./ProductDetails";
 export { default as Footer } from "./Footer";
+export { default as ProductDetailSectionHeader } from "./ProductDetailSectionHeader";
+export { default as KeyIngredients } from "./KeyIngredients";
+export { default as HowToUse } from "./HowToUse";
+export { default as Order } from "./Order";

@@ -2,7 +2,7 @@ import React, { useEffect, useContext  } from 'react';
 import styled from "styled-components";
 import fetch from "isomorphic-unfetch";
 
-import { NavBar, MetaTags, ProductDetails, Footer } from "../../components";
+import { NavBar, MetaTags, ProductDetails, KeyIngredients, Footer, HowToUse, Order } from "../../components";
 
 const ProductPage = ({ product }) => {
   return (
@@ -13,6 +13,9 @@ const ProductPage = ({ product }) => {
       />
       <NavBar />
       <ProductDetails product={product} />
+      <KeyIngredients product={product} />
+      <HowToUse product={product} />
+      <Order product={product} />
       <Footer />
     </>
   );
