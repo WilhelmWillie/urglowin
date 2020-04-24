@@ -15,7 +15,7 @@ const SearchFilter = ({ categories }) => {
   if (categories) {
     // Include 'All' as the first element, then spread rest of categories in
     CategoryElements = ['All', ...categories].map((category : string, index : number) => {
-      return <Link href={`/?category=${category}`}>
+      return <Link href={`/explore?category=${category}`}>
         <CategoryFilterButton key={`c-${index}`} isActive={category === activeCategory}>{category}</CategoryFilterButton>
       </Link>
     })

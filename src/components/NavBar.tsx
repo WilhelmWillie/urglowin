@@ -5,13 +5,25 @@ import { Container } from "./style";
 
 import LogoSVG from "../assets/logo.svg";
 
+import { Row } from "./style";
+
 const NavBar = () => {
   return (
     <Wrapper>
       <Container>
-        <Link href="/">
-          <Logo src={LogoSVG} />
-        </Link>
+        <Row align="center">
+          <Link href="/">
+            <Logo src={LogoSVG} />
+          </Link>
+
+          <Link href="/">
+            <A>Home</A>
+          </Link>
+
+          <Link href="/explore">
+            <A>Explore</A>
+          </Link>
+        </Row>
       </Container>
     </Wrapper>
   )
@@ -23,6 +35,13 @@ const Wrapper = styled.div`
 
 const Logo = styled.img`
   height: 24px;
+  cursor: pointer;
+`;
+
+const A = styled.a`
+  text-decoration: none;
+  color: #1E1E1E;
+  margin-left: 32px;
   cursor: pointer;
 `;
 

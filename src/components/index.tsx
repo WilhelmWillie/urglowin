@@ -10,3 +10,8 @@ export { default as ProductDetailSectionHeader } from "./ProductDetailSectionHea
 export { default as KeyIngredients } from "./KeyIngredients";
 export { default as HowToUse } from "./HowToUse";
 export { default as Order } from "./Order";
+export { default as LandingHero } from "./LandingHero";
+export { default as LandingHowItWorks } from "./LandingHowItWorks";
+export { default as LandingProductRequest } from "./LandingProductRequest";
+export { default as LandingYoureGlowing } from "./LandingYoureGlowing";
+export { default as Button } from "./Button";
