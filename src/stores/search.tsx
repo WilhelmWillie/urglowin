@@ -2,7 +2,8 @@
 import React, { createContext, useReducer } from 'react';
 
 const initialState : any = {
-  category: null
+  category: null,
+  results: [],
 };
 
 const SearchStore = createContext(initialState);
@@ -10,9 +11,18 @@ const { Provider } = SearchStore;
 
 const SearchProvider = ( { children } ) => {
   const [state, dispatch] = useReducer((state, action) => {
+    let newState;
+
     switch(action.type) {
+      case 'UPDATE_RESULTS':
+        newState = {
+          ...state,
+          results: action.results
+        }
+
+        return newState;
       case 'UPDATE_CATEGORY':
-        const newState = {
+        newState = {
           ...state,
           category: action.category
         }

@@ -23,21 +23,36 @@ export default () => {
         clientID: process.env.FACEBOOK_CLIENT_ID,
         clientSecret: process.env.FACEBOOK_CLIENT_SECRET,
         callbackURL: process.env.FACEBOOK_CALLBACK_URL,
-        profileFields: ["email", "name"]
+        profileFields: ["email", "name", "picture.type(large)"]
       },
-      function(accessToken, refreshToken, profile, done) {
-        const { email, first_name, last_name } = profile._json;
-        
-        console.log(profile._json);
-        console.log({email, first_name, last_name });
-        
+      async function(accessToken, refreshToken, profile, done) {
+        const { id } = profile;
+        const { email, first_name, last_name, picture } = profile._json;
+
         const userData = {
+          fbId: id,
           email,
           firstName: first_name,
-          lastName: last_name
+          lastName: last_name,
+          profilePic: picture.data.url,
         };
-        new User(userData).save();
-        done(null, profile);
+
+        const user = await User.findOne({fbId: id});
+        
+        if (!!user) {
+          done(null, {
+            ...user,
+            fbProfile: profile
+          })
+        } else {
+          const newUser = new User(userData);
+          await newUser.save();
+
+          done(null, {
+            ...newUser,
+            fbProfile: profile
+          });
+        }
       }
     )
   );

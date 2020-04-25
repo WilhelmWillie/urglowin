@@ -4,6 +4,9 @@ import fs from "fs";
 import path from "path";
 
 import Product from "../models/product";
+import User from "../models/user";
+
+import isAuthenticated from "../utils/auth";
 
 const router = express.Router();
 
@@ -27,6 +30,14 @@ router.get("/categories", async (req : Request, res : Response) => {
 });
 
 router.get("/:id", async (req : Request, res : Response) => {
+  const { id } = req.params;
+
+  const product = await Product.findOne({_id: id});
+
+  return res.json({product});
+});
+
+router.post("/:id/save", isAuthenticated, async (req : Request, res : Response) => {
   const { id } = req.params;
 
   const product = await Product.findOne({_id: id});

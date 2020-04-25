@@ -6,6 +6,7 @@ import passport from "passport";
 
 import AuthRouter from "./api/auth";
 import ProductsRouter from "./api/products";
+import UserRouter from "./api/user";
 
 import connectToDb from "./utils/db";
 
@@ -24,14 +25,7 @@ server.use(json());
 
 server.use("/auth", AuthRouter);
 server.use("/api/products", ProductsRouter);
-
-server.get("/test", (req : any, res) => {
-  if (req.user) {
-    return res.json({ user: req.user });
-  } else {
-    return res.status(403).json({ message: "You are not logged in"});
-  }
-});
+server.use("/api/user", UserRouter);
 
 (async () => {
   try {

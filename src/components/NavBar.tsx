@@ -12,15 +12,15 @@ const NavBar = () => {
     <Wrapper>
       <Container>
         <Row align="center">
-          <Link href="/">
+          <Link href="/" passHref>
             <Logo src={LogoSVG} />
           </Link>
 
-          <Link href="/">
+          <Link href="/" passHref>
             <A>Home</A>
           </Link>
 
-          <Link href="/explore">
+          <Link href="/explore" passHref>
             <A>Explore</A>
           </Link>
         </Row>
