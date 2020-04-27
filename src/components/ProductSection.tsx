@@ -228,4 +228,8 @@ const ProductUsedFor = styled.span`
   align-self: flex-start;
 `;
 
+export {
+  Product
+};
+
 export default ProductSection;

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { NavBar, MetaTags, LandingHero, LandingHowItWorks, LandingProductRequest, LandingYoureGlowing, Footer } from "../components";
+import { NavBar, MetaTags, Footer, ProfileColumns } from "../components";
 import useUpdateUser from "../hooks/useUpdateUser";
 import getUser from "../utils/getUser";
 
@@ -11,6 +11,7 @@ const Profile = ({ user }) => {
     <>
       <MetaTags />
       <NavBar />
+      <ProfileColumns user={user} />
       <Footer />
     </>
   )

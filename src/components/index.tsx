@@ -1,7 +1,7 @@
 export { default as NavBar } from "./NavBar";
 export { default as MetaTags } from "./MetaTags";
 export { default as HeaderSection } from "./HeaderSection";
-export { default as ProductSection } from "./ProductSection";
+export { default as ProductSection, Product } from "./ProductSection";
 export { default as SearchFilter } from "./SearchFilter";
 export { default as SearchBox } from "./SearchBox";
 export { default as ProductDetails } from "./ProductDetails";
@@ -15,3 +15,4 @@ export { default as LandingHowItWorks } from "./LandingHowItWorks";
 export { default as LandingProductRequest } from "./LandingProductRequest";
 export { default as LandingYoureGlowing } from "./LandingYoureGlowing";
 export { default as Button } from "./Button";
+export { default as ProfileColumns } from "./ProfileColumns";

@@ -1,4 +1,3 @@
-import React from "react";
 import styled from "styled-components";
 
 const Button = styled.button`
@@ -9,6 +8,8 @@ const Button = styled.button`
   font-family: MabryPro;
   color: #FFFFFF;
   padding: 18px;
+  text-align: center;
+  text-decoration: none;
 `;
 
 export default Button;
