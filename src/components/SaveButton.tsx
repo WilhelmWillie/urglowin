@@ -12,6 +12,7 @@ const SaveButton = styled.button`
   display: inline-block;
   align-self: flex-start;
   margin-top: 24px;
+  cursor: pointer;
 `;
 
 export default SaveButton;

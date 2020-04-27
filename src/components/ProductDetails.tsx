@@ -1,9 +1,43 @@
+import { useEffect, useState, useCallback } from "react";
 import styled from "styled-components";
 
 import { Container, Row, Column } from "./style";
 import SaveButton from "./SaveButton";
 
-const ProductDetails = ({ product }) => {
+import useUpdateUser from "../hooks/useUpdateUser";
+
+const ProductDetails = ({ product, user }) => {
+  const [isSaved, setIsSaved] = useState(false);
+
+  useEffect(() => {
+    if (user) {
+      user.saved.forEach(item => {
+        console.log(item, product._id);
+
+        if (item === product._id) {
+          setIsSaved(true);
+        }
+      })
+    }
+  }, [user])
+
+  const updateUser = useCallback(() => {
+    return () => {
+      useUpdateUser();
+    }
+  }, []);
+
+  const saveItem = async () => {
+    const res = await fetch(`/api/products/${product._id}/save`, {
+      method: 'POST'
+    });
+
+    if (res.status === 200) {
+      updateUser();
+      setIsSaved(true);
+    }
+  }
+
   const usedFor = product.usedFor.map((usedFor) => (
     <ProductBarDetailPill key={usedFor} bg="#B1D9FF">
       {usedFor}
@@ -51,7 +85,13 @@ const ProductDetails = ({ product }) => {
               </ProductBarDetail>
             </ProductBar>
 
-            <SaveButton>♡ Save</SaveButton>
+            { 
+              isSaved ? (
+                <SaveButton>♡ Unsave</SaveButton>
+              ) : (
+                <SaveButton onClick={saveItem}>♡ Save</SaveButton>
+              )
+            }
           </Column>
         </Row>
       </Container>

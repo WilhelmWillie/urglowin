@@ -16,7 +16,7 @@ const ProductPage = ({ product, user }) => {
         description={`Learn about ${product.productName}, a ${product.category} by ${product.brand}`}
       />
       <NavBar />
-      <ProductDetails product={product} />
+      <ProductDetails product={product} user={user} />
       <KeyIngredients product={product} />
       <HowToUse product={product} />
       <Order product={product} />

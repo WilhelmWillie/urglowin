@@ -17,6 +17,12 @@ const LeftColumn = ({ user }) => {
 }
 
 const RightColumn = ({ user }) => {
+  const Products = user.saved.map(product => (
+    <div>
+      <p>{product.productName}</p>
+    </div>
+  ));
+
   return (
     <ColumnWithLeftPadding>
       <h1>{user.firstName} {user.lastName}</h1>
@@ -32,7 +38,7 @@ const RightColumn = ({ user }) => {
       <SavedProducts>
         {
           user.saved.length > 0 ? (
-            <p>nice</p>
+            Products
           ) : (
             <SavedProductsEmptyMessage>You have no saved products :(</SavedProductsEmptyMessage>
           )

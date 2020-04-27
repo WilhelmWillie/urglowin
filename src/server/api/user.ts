@@ -8,7 +8,8 @@ const router = express.Router();
 
 // Return current logged in user data
 router.get("/", isAuthenticated, async (req : any, res : Response) => {
-  return res.json(req.user);
+  const user = await User.findOne({_id: req.user.user._id}).populate('saved');
+  return res.json({user});
 });
 
 export default router;

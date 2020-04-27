@@ -3,7 +3,7 @@ import { useContext, useEffect } from 'react';
 import { AppStore } from "../stores";
 import getUser from "../utils/getUser";
 
-function useUser(user) {
+function useUser(user?) {
   const useUserAsync = async () => {
     let loggedInUser;
     

@@ -37,7 +37,7 @@ export default () => {
           profilePic: picture.data.url,
         };
 
-        const user = await User.findOne({fbId: id});
+        const user = await User.findOne({fbId: id}).populate('saved');
         
         if (!!user) {
           done(null, {
