@@ -44,14 +44,18 @@ router.post("/:id/save", isAuthenticated, async (req : any, res : Response) => {
   const loggedInUser = await User.findOne({_id: user._id})
   const product = await Product.findOne({_id: id});
 
+  console.log(loggedInUser);
+
   if (!loggedInUser.saved.includes(product._id)) {
     loggedInUser.saved.push(product._id);
     await loggedInUser.save();
   } else {
-    loggedInUser.saved = loggedInUser.saved.filter(item => item._id !== product._id);
+    loggedInUser.saved.pull({ _id: product._id });
     await loggedInUser.save();
   }
   
+  console.log(loggedInUser.saved);
+
   return res.json({product});
 });
 

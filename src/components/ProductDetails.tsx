@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { Container, Row, Column } from "./style";
 import SaveButton from "./SaveButton";
 
-import useUpdateUser from "../hooks/useUpdateUser";
+import { useUpdateUserCB } from "../hooks/useUpdateUser";
 
 const ProductDetails = ({ product, user }) => {
   const [isSaved, setIsSaved] = useState(false);
@@ -19,11 +19,7 @@ const ProductDetails = ({ product, user }) => {
     }
   }, [user])
 
-  const updateUser = useCallback(() => {
-    return () => {
-      useUpdateUser();
-    }
-  }, []);
+  const updateUser = useUpdateUserCB();
 
   const saveItem = async () => {
     const res = await fetch(`/api/products/${product._id}/save`, {
@@ -31,7 +27,7 @@ const ProductDetails = ({ product, user }) => {
     });
 
     if (res.status === 200) {
-      updateUser();
+      await updateUser();
       setIsSaved(!isSaved);
     }
   }

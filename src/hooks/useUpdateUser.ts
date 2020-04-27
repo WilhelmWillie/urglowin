@@ -1,4 +1,4 @@
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useCallback } from 'react';
 
 import { AppStore } from "../stores";
 import getUser from "../utils/getUser";
@@ -24,3 +24,16 @@ function useUser(user?) {
 }
 
 export default useUser;
+
+function useUpdateUserCB() {
+  const appState = useContext(AppStore);
+
+  return useCallback(async () => {
+    const { dispatch } = appState;
+
+    const user = await getUser();
+    dispatch({ type: 'UPDATE_USER', user });
+  }, [])
+}
+
+export { useUpdateUserCB };
