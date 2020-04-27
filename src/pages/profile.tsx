@@ -4,25 +4,21 @@ import { NavBar, MetaTags, LandingHero, LandingHowItWorks, LandingProductRequest
 import useUpdateUser from "../hooks/useUpdateUser";
 import getUser from "../utils/getUser";
 
-const Home = ({ user }) => {
+const Profile = ({ user }) => {
   useUpdateUser(user);
   
   return (
     <>
       <MetaTags />
       <NavBar />
-      <LandingHero />
-      <LandingHowItWorks />
-      <LandingYoureGlowing />
-      <LandingProductRequest />
       <Footer />
     </>
   )
 };
 
-Home.getInitialProps = async ({req}) => {
+Profile.getInitialProps = async ({req}) => {
   const user = await getUser(req);
   return { user }
 }
 
-export default Home;
+export default Profile;
