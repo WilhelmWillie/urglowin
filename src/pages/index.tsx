@@ -1,8 +1,12 @@
-import React, { useEffect, useContext  } from 'react';
+import React from 'react';
 
-import { NavBar, MetaTags, HeaderSection, ProductSection, SearchFilter, SearchBox, LandingHero, LandingHowItWorks, LandingProductRequest, LandingYoureGlowing, Footer } from "../components";
+import { NavBar, MetaTags, LandingHero, LandingHowItWorks, LandingProductRequest, LandingYoureGlowing, Footer } from "../components";
+import useUpdateUser from "../hooks/useUpdateUser";
+import getUser from "../utils/getUser";
 
-const Home = () => {
+const Home = ({ user }) => {
+  useUpdateUser(user);
+  
   return (
     <>
       <MetaTags />
@@ -15,5 +19,10 @@ const Home = () => {
     </>
   )
 };
+
+Home.getInitialProps = async ({req}) => {
+  const user = await getUser(req);
+  return { user }
+}
 
 export default Home;

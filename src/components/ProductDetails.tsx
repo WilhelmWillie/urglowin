@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 import { Container, Row, Column } from "./style";
+import SaveButton from "./SaveButton";
 
 const ProductDetails = ({ product }) => {
   const usedFor = product.usedFor.map((usedFor) => (
@@ -49,6 +50,8 @@ const ProductDetails = ({ product }) => {
                 <ProductBarDetailLink target="_blank" href={product.ingredientsUrl}>{product.brand}</ProductBarDetailLink>
               </ProductBarDetail>
             </ProductBar>
+
+            <SaveButton>♡ Save</SaveButton>
           </Column>
         </Row>
       </Container>

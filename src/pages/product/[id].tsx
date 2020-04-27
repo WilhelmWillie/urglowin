@@ -3,8 +3,12 @@ import styled from "styled-components";
 import fetch from "isomorphic-unfetch";
 
 import { NavBar, MetaTags, ProductDetails, KeyIngredients, Footer, HowToUse, Order } from "../../components";
+import useUpdateUser from "../../hooks/useUpdateUser";
+import getUser from "../../utils/getUser";
 
-const ProductPage = ({ product }) => {
+const ProductPage = ({ product, user }) => {
+  useUpdateUser(user);
+  
   return (
     <>
       <MetaTags 
@@ -29,8 +33,11 @@ ProductPage.getInitialProps = async ({req, query}) => {
   const res = await fetch(url);
   const data = await res.json();
 
+  const user = await getUser(req);
+
   return {
-    product: data.product
+    product: data.product,
+    user
   }
 }
 

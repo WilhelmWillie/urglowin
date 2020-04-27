@@ -87,8 +87,8 @@ const Product = (props : Product) => {
   }
 
   return (
-    <Link href={`/product/${props._id}`}>
-      <ProductWrapper>
+    <Link as={`/product/${props._id}`} passHref href="/product/[id]">
+      <ProductWrapper as="a">
         <ProductPreview>
           <ProductImg src={props.imageUrl} alt={props.productName} />
           <ProductDetails>
@@ -134,6 +134,7 @@ const ProductWrapper = styled.div`
   padding: 16px;
   box-sizing: border-box;
   transition: 0.1s all;
+  text-decoration: none;
 
   &:hover {
     transform: scale(1.03);

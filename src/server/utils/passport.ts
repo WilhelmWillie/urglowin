@@ -41,16 +41,14 @@ export default () => {
         
         if (!!user) {
           done(null, {
-            ...user,
-            fbProfile: profile
+            user
           })
         } else {
           const newUser = new User(userData);
           await newUser.save();
 
           done(null, {
-            ...newUser,
-            fbProfile: profile
+            newUser
           });
         }
       }

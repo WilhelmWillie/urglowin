@@ -5,13 +5,18 @@ import fetch from "isomorphic-unfetch";
 import { NavBar, MetaTags, HeaderSection, ProductSection, SearchFilter, SearchBox, Footer } from "../components";
 import { SearchStore } from "../stores";
 
-const Explore = ({ products, categories, query}) => {
+import useUpdateUser from "../hooks/useUpdateUser";
+import getUser from "../utils/getUser";
+
+const Explore = ({ products, categories, query, user}) => {
   const searchState = useContext(SearchStore);
   const { dispatch } = searchState;
 
   useEffect(() => {
     dispatch({ type: 'UPDATE_CATEGORY', category: query.category });
   }, [query]);
+
+  useUpdateUser(user);
 
   return (
     <>
@@ -37,7 +42,9 @@ Explore.getInitialProps = async ({req, query}) => {
   const categoriesRes = await fetch(categoriesUrl);
   const categoriesData = await categoriesRes.json();
 
-  return { products: productsData.products, categories: categoriesData.categories, query }
+  const user = await getUser(req);
+
+  return { products: productsData.products, categories: categoriesData.categories, query, user }
 }
 
 export default Explore;

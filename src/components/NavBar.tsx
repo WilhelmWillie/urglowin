@@ -1,13 +1,15 @@
+import React, { useContext } from 'react';
 import styled from "styled-components";
 import Link from "next/link";
 
-import { Container } from "./style";
-
+import useUser from "../hooks/useUser";
+import { Container, Row } from "./style";
 import LogoSVG from "../assets/logo.svg";
-
-import { Row } from "./style";
+import Button from "./Button";
 
 const NavBar = () => {
+  const user = useUser();
+
   return (
     <Wrapper>
       <Container>
@@ -23,6 +25,20 @@ const NavBar = () => {
           <Link href="/explore" passHref>
             <A>Explore</A>
           </Link>
+
+          {
+            !!user ? (
+              <Link href="/profile" passHref>
+                <Profile>
+                  <img src={user.profilePic} />
+                </Profile>
+              </Link>
+            ) : (
+              <Link href="/auth/facebook" passHref>
+                <Login as="a">Log In</Login>
+              </Link>
+            )
+          }
         </Row>
       </Container>
     </Wrapper>
@@ -43,6 +59,22 @@ const A = styled.a`
   color: #1E1E1E;
   margin-left: 32px;
   cursor: pointer;
+`;
+
+const Login = styled(Button)`
+  margin-left: auto;
+  padding: 12px 24px;
+  text-decoration: none;
+`;
+
+const Profile = styled.a`
+  margin-left: auto;
+
+  img {
+    width: 44px;
+    height: 44px;
+    border-radius:  100%;
+  }
 `;
 
 export default NavBar;

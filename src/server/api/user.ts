@@ -8,7 +8,7 @@ const router = express.Router();
 
 // Return current logged in user data
 router.get("/", isAuthenticated, async (req : any, res : Response) => {
-  return res.json({ user: req.user });
+  return res.json(req.user);
 });
 
 export default router;
