@@ -18,9 +18,14 @@ const LeftColumn = ({ user }) => {
 
 const RightColumn = ({ user }) => {
   const Products = user.saved.map(product => (
-    <div>
-      <p>{product.productName}</p>
-    </div>
+    <Link as={`/product/${product._id}`} passHref href="/product/[id]">
+      <ProductWrapper as="a">
+        <ProductImg src={product.imageUrl} alt={product.productName} />
+        
+        <h3>{product.brand}</h3>
+        <p>{product.productName}</p>
+      </ProductWrapper>
+    </Link>
   ));
 
   return (
@@ -97,8 +102,21 @@ const ColumnWithLeftPadding = styled(Column)`
 `;
 
 const SavedProducts = styled.div`
+  display: grid;
+  grid-gap: 16px;
+  grid-template-columns: repeat(3, 1fr);
+  padding: 24px;
+  box-sizing: border-box;
+
+  @media screen and (max-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media screen and (max-width: 480px) {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
   min-height: 300px;
-  display: flex;
   background: #F6F6F6;
   border-radius: 10px;
 `;
@@ -110,6 +128,42 @@ const SavedProductsEmptyMessage = styled.span`
   color: #555555;
   font-size: 24px;
   width: 100%;
+  padding: 16px;
 `;
+
+const ProductWrapper = styled.div`
+  border-radius: 8px;
+  border: 2px solid #EDEDED;
+  padding: 16px;
+  background: #FFFFFF;
+  box-sizing: border-box;
+  text-align: center;
+  &:hover {
+    transform: scale(1.03);
+    cursor: pointer;
+  }
+
+  img {
+    margin: 0 auto;
+  }
+
+  h3 {
+    margin: 12px 0;
+    color: #888888;
+    font-family: GintoNord;
+  }
+
+  p {
+    color: #555555;
+    font-size: 18px;
+  }
+`;
+
+const ProductImg = styled.img`
+  display: block;
+  max-height: 150px;
+  max-width: 50%;
+`;
+
 
 export default ProfileColumns;

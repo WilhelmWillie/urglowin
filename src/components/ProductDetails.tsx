@@ -12,9 +12,7 @@ const ProductDetails = ({ product, user }) => {
   useEffect(() => {
     if (user) {
       user.saved.forEach(item => {
-        console.log(item, product._id);
-
-        if (item === product._id) {
+        if (item._id === product._id) {
           setIsSaved(true);
         }
       })
@@ -34,7 +32,7 @@ const ProductDetails = ({ product, user }) => {
 
     if (res.status === 200) {
       updateUser();
-      setIsSaved(true);
+      setIsSaved(!isSaved);
     }
   }
 
@@ -87,7 +85,7 @@ const ProductDetails = ({ product, user }) => {
 
             { 
               isSaved ? (
-                <SaveButton>♡ Unsave</SaveButton>
+                <SaveButton onClick={saveItem}>♡ Unsave</SaveButton>
               ) : (
                 <SaveButton onClick={saveItem}>♡ Save</SaveButton>
               )
