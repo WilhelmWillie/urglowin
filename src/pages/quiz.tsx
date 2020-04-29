@@ -60,7 +60,6 @@ const QuizContainer = styled(Container)`
   margin: 32px auto 64px;
   padding: 32px;
   border-radius: 10px;
-  border: 1px solid #DDDDDD;
   overflow: hidden;
 `;
 
