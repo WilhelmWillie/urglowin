@@ -6,7 +6,7 @@ import { Container, Row, Column } from "./style";
 import Button from "./Button";
 import { AppStore } from "../stores";
 
-const LeftColumn = ({ user }) => {
+const LeftColumn = ({ user, isPublicView }) => {
   const appState = useContext(AppStore);
   const { dispatch } = appState;
 
@@ -18,16 +18,20 @@ const LeftColumn = ({ user }) => {
     <Column width="200px">
       <ProfilePic src={user.profilePic} />
 
-      <EditButton onClick={handleEditButton}>Edit Profile</EditButton>
+      {!isPublicView && (
+        <>
+          <EditButton onClick={handleEditButton}>Edit Profile</EditButton>
 
-      <Link href="/auth/logout" passHref>
-        <Button as="a" outline>Logout</Button>
-      </Link>
+          <Link href="/auth/logout" passHref>
+            <Button as="a" outline>Logout</Button>
+          </Link>
+        </>
+      )}
     </Column>
   )
 }
 
-const RightColumn = ({ user }) => {
+const RightColumn = ({ user, isPublicView }) => {
   const Products = user.saved.map(product => (
     <Link as={`/product/${product._id}`} passHref href="/product/[id]">
       <ProductWrapper as="a">
@@ -40,6 +44,12 @@ const RightColumn = ({ user }) => {
   ));
 
   const HOST = process.env.NODE_ENV === 'production' ? 'https://mvp.urglow.in' : 'http://localhost:3000';
+
+  const noSavedMessage = isPublicView ? (
+    `${user.firstName} has no saved items :(`
+  ) : (
+    `You have no saved items :(`
+  );
 
   return (
     <ColumnWithLeftPadding>
@@ -56,7 +66,7 @@ const RightColumn = ({ user }) => {
       <ProfileDetail>The ingredient that I like the most in my products is <span>{user.bio?.favIngredient || 'N/A'}</span></ProfileDetail>
       <br />
 
-      {user.username && (
+      {user.username && !isPublicView && (
         <Share>
           <p>Share your profile with others using this link</p>
 
@@ -77,7 +87,7 @@ const RightColumn = ({ user }) => {
           ) : (
             <>
               <span/>
-              <SavedProductsEmptyMessage>You have no saved products :(</SavedProductsEmptyMessage>
+              <SavedProductsEmptyMessage>{noSavedMessage}</SavedProductsEmptyMessage>
               <span/>
             </>
           )
@@ -87,14 +97,19 @@ const RightColumn = ({ user }) => {
   )
 }
 
-const ProfileColumns = ({ user }) => {
+type ProfileColumns = {
+  user: any;
+  isPublicView?: boolean;
+}
+
+const ProfileColumns = ({ user, isPublicView } : ProfileColumns) => {
   return (
     <Wrapper>
       <ModContainer>
         <Row justify="space-between">
-          <LeftColumn user={user} />
+          <LeftColumn user={user} isPublicView={isPublicView} />
 
-          <RightColumn user={user} />
+          <RightColumn user={user} isPublicView={isPublicView} />
         </Row>
       </ModContainer>
     </Wrapper>

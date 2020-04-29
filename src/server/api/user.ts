@@ -13,7 +13,7 @@ router.get("/", isAuthenticated, async (req : any, res : Response) => {
 });
 
 // Return a diff user
-router.get("/:id", async (req : any, res : Response) => {
+router.get("/:username", async (req : any, res : Response) => {
   const user = await User.findOne({username: req.params.username}).populate('saved');
   return res.json({user});
 });
