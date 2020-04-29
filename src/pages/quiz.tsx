@@ -14,36 +14,10 @@ const Quiz = ({ user }) => {
       <MetaTags />
       <NavBar />
       <QuizContainer>
-        <div 
-          className="typeform-widget" 
-          data-url="https://jennychung1.typeform.com/to/J0Jpye" 
-          data-transparency="100" 
-          style={{
-            width: '100%',
-            height: '500px'
-          }}
-        ></div> 
-        
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-            (function() { var qs,js,q,s,d=document, gi=d.getElementById, ce=d.createElement, gt=d.getElementsByTagName, id="typef_orm", b="https://embed.typeform.com/"; if(!gi.call(d,id)) { js=ce.call(d,"script"); js.id=id; js.src=b+"embed.js"; q=gt.call(d,"script")[0]; q.parentNode.insertBefore(js,q) } })() 
-            `
-          }}
-        />
-        
-        <div
-          style={{
-            fontFamily: 'Sans-Serif',
-            fontSize: '12px',
-            color: '#999',
-            opacity: 0.5,
-            paddingTop: '5px'
-          }}
-        > 
-          powered by 
-          <a href="https://admin.typeform.com/signup?utm_campaign=J0Jpye&utm_source=typeform.com-01D8JX1SPA168JZ2RM2HRJKCB5-professional&utm_medium=typeform&utm_content=typeform-embedded-poweredbytypeform&utm_term=EN" style={{color: '#999'}} target="_blank">Typeform</a>
-        </div>
+        <h1>URGLOWIN Quiz ✨</h1>
+
+        <p>Welcome to URGLOWIN! To get started, take this in-depth quiz so we can understand your skin. Once we've analyzed your input, you'll received curated product information matched to your concerns!</p>
+        <iframe id="my_typeform" src="https://jennychung1.typeform.com/to/J0Jpye"></iframe>
       </QuizContainer>
       <Footer />
       <LoginModal />
@@ -61,6 +35,16 @@ const QuizContainer = styled(Container)`
   padding: 32px;
   border-radius: 10px;
   overflow: hidden;
+  
+  iframe {
+    width: 100%;
+    min-height: 70vh;
+  }
+
+  h1, p {
+    width: 70%;
+    margin: 0 auto 24px;
+  }
 `;
 
 export default Quiz;
