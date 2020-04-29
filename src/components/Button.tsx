@@ -10,6 +10,12 @@ const Button = styled.button`
   padding: 18px;
   text-align: center;
   text-decoration: none;
+
+  ${({outline}) => outline && `
+    border: 2px solid #3298F9;
+    background: transparent;
+    color: #3298F9;
+  `}
 `;
 
 export default Button;

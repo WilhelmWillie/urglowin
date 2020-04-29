@@ -1,7 +1,9 @@
+import fetch from "isomorphic-unfetch";
+
 async function getUser(req?) {
   const host = process.env.URL || 'http://localhost:3000';
 
-  const getUserFromApi = async (req) => {
+  const getUserFromApi = async () => {
     const url = req ? `${host}/api/user` : '/api/user';
 
     const res = await fetch(url);
@@ -14,7 +16,7 @@ async function getUser(req?) {
     return data.user;
   }
 
-  const user = req ? req.user?.user : await getUserFromApi(req);
+  const user = req ? req.user : await getUserFromApi();
 
   return user;
 }

@@ -1,12 +1,16 @@
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState, useContext } from "react";
 import styled from "styled-components";
 
 import { Container, Row, Column } from "./style";
 import SaveButton from "./SaveButton";
 
 import { useUpdateUserCB } from "../hooks/useUpdateUser";
+import  { AppStore } from "../stores";
 
 const ProductDetails = ({ product, user }) => {
+  const appState = useContext(AppStore);
+  const { dispatch } = appState;
+
   const [isSaved, setIsSaved] = useState(false);
 
   useEffect(() => {
@@ -22,6 +26,11 @@ const ProductDetails = ({ product, user }) => {
   const updateUser = useUpdateUserCB();
 
   const saveItem = async () => {
+    if (!user) {
+      dispatch({ type: 'TOGGLE_LOGIN_MODAL' });
+      return;
+    }
+
     const res = await fetch(`/api/products/${product._id}/save`, {
       method: 'POST'
     });
@@ -81,7 +90,7 @@ const ProductDetails = ({ product, user }) => {
 
             { 
               isSaved ? (
-                <SaveButton onClick={saveItem}>♡ Unsave</SaveButton>
+                <SaveButton onClick={saveItem} unsave>♡ Unsave</SaveButton>
               ) : (
                 <SaveButton onClick={saveItem}>♡ Save</SaveButton>
               )

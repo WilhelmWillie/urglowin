@@ -2,7 +2,9 @@
 import React, { createContext, useReducer } from 'react';
 
 const initialState : any = {
-  user: null
+  user: null,
+  showLoginModal: false,
+  showEditProfileModal: false,
 };
 
 const AppStore = createContext(initialState);
@@ -12,12 +14,26 @@ const AppProvider = ( { children } ) => {
   const [state, dispatch] = useReducer((state, action) => {
     switch(action.type) {
       case 'UPDATE_USER':
-        const newState = {
+        const stateWithUser = {
           ...state,
           user: action.user
         }
         
-        return newState;
+        return stateWithUser;
+      case 'TOGGLE_LOGIN_MODAL':
+        const toggledModalState = {
+          ...state,
+          showLoginModal: !state.showLoginModal
+        }
+
+        return toggledModalState;
+      case 'TOGGLE_EDIT_PROFILE_MODAL':
+        const editModalState = {
+          ...state,
+          showEditProfileModal: !state.showEditProfileModal
+        }
+
+        return editModalState;
       default:
         throw new Error();
     };

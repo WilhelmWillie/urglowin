@@ -2,7 +2,7 @@ import React, { useEffect, useContext  } from 'react';
 import styled from "styled-components";
 import fetch from "isomorphic-unfetch";
 
-import { NavBar, MetaTags, ProductDetails, KeyIngredients, Footer, HowToUse, Order } from "../../components";
+import { NavBar, MetaTags, ProductDetails, KeyIngredients, Footer, HowToUse, Order, LoginModal } from "../../components";
 import useUpdateUser from "../../hooks/useUpdateUser";
 import getUser from "../../utils/getUser";
 
@@ -21,6 +21,7 @@ const ProductPage = ({ product, user }) => {
       <HowToUse product={product} />
       <Order product={product} />
       <Footer />
+      <LoginModal />
     </>
   );
 };

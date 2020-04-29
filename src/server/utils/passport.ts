@@ -10,11 +10,13 @@ export default () => {
   dotenv.config();
 
   passport.serializeUser(function(user, done) {
-    done(null, user);
+    done(null, user.id);
   });
 
-  passport.deserializeUser(function(obj, done) {
-    done(null, obj);
+  passport.deserializeUser(function(id, done) {
+    User.findOne({_id: id}, (err, user) => {
+      done(err, user);
+   }).populate('saved');
   });
 
   passport.use(
@@ -40,16 +42,12 @@ export default () => {
         const user = await User.findOne({fbId: id}).populate('saved');
         
         if (!!user) {
-          done(null, {
-            user
-          })
+          done(null, user)
         } else {
           const newUser = new User(userData);
           await newUser.save();
 
-          done(null, {
-            newUser
-          });
+          done(null, newUser);
         }
       }
     )

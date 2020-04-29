@@ -2,7 +2,7 @@ import React, { useEffect, useContext  } from 'react';
 
 import fetch from "isomorphic-unfetch";
 
-import { NavBar, MetaTags, HeaderSection, ProductSection, SearchFilter, SearchBox, Footer } from "../components";
+import { NavBar, MetaTags, HeaderSection, ProductSection, SearchFilter, SearchBox, Footer, LoginModal } from "../components";
 import { SearchStore } from "../stores";
 
 import useUpdateUser from "../hooks/useUpdateUser";
@@ -27,6 +27,7 @@ const Explore = ({ products, categories, query, user}) => {
       <SearchFilter categories={categories} />
       <ProductSection products={products} />
       <Footer />
+      <LoginModal />
     </>
   )
 };

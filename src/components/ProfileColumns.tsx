@@ -1,16 +1,27 @@
+import { useContext } from "react";
 import styled from "styled-components";
 import Link from "next/link";
 
 import { Container, Row, Column } from "./style";
 import Button from "./Button";
+import { AppStore } from "../stores";
 
 const LeftColumn = ({ user }) => {
+  const appState = useContext(AppStore);
+  const { dispatch } = appState;
+
+  const handleEditButton = () => {
+    dispatch({ type: 'TOGGLE_EDIT_PROFILE_MODAL' });
+  }
+
   return (
     <Column width="200px">
       <ProfilePic src={user.profilePic} />
 
+      <EditButton onClick={handleEditButton}>Edit Profile</EditButton>
+
       <Link href="/auth/logout" passHref>
-        <Button as="a">Logout</Button>
+        <Button as="a" outline>Logout</Button>
       </Link>
     </Column>
   )
@@ -28,16 +39,35 @@ const RightColumn = ({ user }) => {
     </Link>
   ));
 
+  const HOST = process.env.NODE_ENV === 'production' ? 'https://mvp.urglow.in' : 'http://localhost:3000';
+
   return (
     <ColumnWithLeftPadding>
       <h1>{user.firstName} {user.lastName}</h1>
 
-      <p>Hello and welcome to URGLOWIN ✨This is your personal profile. Products you save are bookmarked here for you to easily access</p>
+      <h2>About</h2>
 
+      <ProfileDetail>Hi, I'm <span>{user.username || 'N/A'}</span></ProfileDetail>
+
+      <ProfileDetail>My skin is <span>{user.bio?.skinDescription || 'N/A'}</span></ProfileDetail>
+
+      <ProfileDetail>My favorite product right now is <span>{user.bio?.favProduct || 'N/A'}</span></ProfileDetail>
+
+      <ProfileDetail>The ingredient that I like the most in my products is <span>{user.bio?.favIngredient || 'N/A'}</span></ProfileDetail>
       <br />
 
-      <p>New features are always being worked on - stay up to date with updates by following us on Instagram @ <a href="https://instagram.com/urglow.in" target="_blank">urglow.in</a></p>
-    
+      {user.username && (
+        <Share>
+          <p>Share your profile with others using this link</p>
+
+          <input type="text" value={`${HOST}/profile/${user.username}`} onClick={
+            (e) => {
+              e.currentTarget.select();
+            }
+          } />
+        </Share>
+      )}
+
       <h2>Saved</h2>
 
       <SavedProducts>
@@ -45,7 +75,11 @@ const RightColumn = ({ user }) => {
           user.saved.length > 0 ? (
             Products
           ) : (
-            <SavedProductsEmptyMessage>You have no saved products :(</SavedProductsEmptyMessage>
+            <>
+              <span/>
+              <SavedProductsEmptyMessage>You have no saved products :(</SavedProductsEmptyMessage>
+              <span/>
+            </>
           )
         }
       </SavedProducts>
@@ -96,7 +130,7 @@ const ColumnWithLeftPadding = styled(Column)`
     font-family: GintoNord;
     text-transform: uppercase;
     font-size: 24px;
-    margin: 48px 0 12px;
+    margin: 12px 0;
     color: #555555;
   }
 `;
@@ -165,5 +199,47 @@ const ProductImg = styled.img`
   max-width: 50%;
 `;
 
+const ProfileDetail = styled.p`
+  margin-bottom: 8px;
+
+  span {
+    background: #3298F9;
+    border: none;
+    color: #FFFFFF;
+    padding: 4px;
+    font-size: 18px;
+  }
+`;
+
+const EditButton = styled(Button)`
+  margin-bottom: 16px;
+  cursor: pointer;
+`;
+
+const Share = styled.div`
+  border-radius: 8px;
+  border: 2px solid #EDEDED;
+  padding: 20px;
+  margin-bottom: 16px;
+
+  p {
+    margin-bottom: 8px;
+  }
+
+  input[type=text] {
+    border: 1px solid #B1D9FF;
+    box-sizing: border-box;
+    border-radius: 8px;
+    padding: 16px;
+    font-size: 16px;
+    font-family: MabryPro;
+    width: 100%;
+    color: #555555;
+
+    ::placeholder {
+      color: #888888;
+    }
+  }
+`;
 
 export default ProfileColumns;

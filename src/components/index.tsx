@@ -16,3 +16,6 @@ export { default as LandingProductRequest } from "./LandingProductRequest";
 export { default as LandingYoureGlowing } from "./LandingYoureGlowing";
 export { default as Button } from "./Button";
 export { default as ProfileColumns } from "./ProfileColumns";
+export { default as LoginModal } from "./LoginModal";
+export { default as EditProfileModal } from "./EditProfileModal";
+export { default as Modal } from "./Modal";

@@ -6,10 +6,17 @@ import useUser from "../hooks/useUser";
 import { Container, Row } from "./style";
 import LogoSVG from "../assets/logo.svg";
 import Button from "./Button";
+import  { AppStore } from "../stores";
 
 const NavBar = () => {
   const user = useUser();
+  const appState = useContext(AppStore);
+  const { dispatch } = appState;
 
+  const showModal = () => {
+    dispatch({ type: 'TOGGLE_LOGIN_MODAL' });
+  }
+  
   return (
     <Wrapper>
       <Container>
@@ -34,9 +41,7 @@ const NavBar = () => {
                 </Profile>
               </Link>
             ) : (
-              <Link href="/auth/facebook" passHref>
-                <Login as="a">Log In</Login>
-              </Link>
+              <Login onClick={showModal}>Log In</Login>
             )
           }
         </Row>
@@ -65,6 +70,7 @@ const Login = styled(Button)`
   margin-left: auto;
   padding: 12px 24px;
   text-decoration: none;
+  cursor: pointer;
 `;
 
 const Profile = styled.a`
