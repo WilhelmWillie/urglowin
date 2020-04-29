@@ -3,6 +3,7 @@ import session from "express-session";
 import next from "next";
 import { json } from "body-parser";
 import passport from "passport";
+import enforce from "express-sslify";
 
 import AuthRouter from "./api/auth";
 import ProductsRouter from "./api/products";
@@ -22,6 +23,10 @@ server.use(session({ secret: "cats" }));
 server.use(passport.initialize());
 server.use(passport.session());
 server.use(json());
+
+if (!dev) {
+  server.use(enforce.HTTPS({ trustProtoHeader: true }));
+}
 
 server.use("/auth", AuthRouter);
 server.use("/api/products", ProductsRouter);
