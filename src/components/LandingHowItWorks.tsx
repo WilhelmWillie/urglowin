@@ -21,7 +21,7 @@ const LandingHowItWorks = () => {
           </TextColumn>
 
           <Column width={"70%"}>
-            <InfoImg src={HowItWorks} />
+            <InfoImg src={HowItWorks} alt="Chat conversation"/>
           </Column>
         </Row>
       </Container>

@@ -10,7 +10,7 @@ const LandingYoureGlowing = () => {
           <Column>
             <p>There’s too many products out there to try them all. Tell us about your skin and we’ll tell you what’s for your skin. &amp; remember, you’re glowin’.</p>
           
-            <YoureGlowin src="/youre_glowing.png" />
+            <YoureGlowin src="/youre_glowing.png" alt="Man in a yellow hoodie with text that says 'You're Glowin' above him"/>
           </Column>
         </Row>
       </Container>

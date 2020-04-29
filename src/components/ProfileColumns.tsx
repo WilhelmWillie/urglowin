@@ -16,7 +16,7 @@ const LeftColumn = ({ user, isPublicView }) => {
 
   return (
     <Column width="200px">
-      <ProfilePic src={user.profilePic} />
+      <ProfilePic src={user.profilePic} alt={`${user.firstName} ${user.lastName}'s profile photo`} />
 
       {!isPublicView && (
         <>

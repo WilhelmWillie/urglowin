@@ -22,7 +22,7 @@ const LandingHero = () => {
           </TextColumn>
 
           <Column width={"25%"}>
-            <Girl src="/gorl.jpg" />
+            <Girl src="/gorl.jpg" alt="Photo of a girl"/>
           </Column>
         </Row>
       </Container>
