@@ -45,6 +45,16 @@ const QuizContainer = styled(Container)`
     width: 70%;
     margin: 0 auto 24px;
   }
+
+  @media screen and (max-width: 768px) {
+    iframe {
+      max-height: 80vh;
+    }
+
+    h1, p {
+      width: 90%;
+    }
+  }
 `;
 
 export default Quiz;
