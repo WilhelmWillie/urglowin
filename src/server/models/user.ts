@@ -30,9 +30,7 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: false,
     unique: true,
-    minlength: 3,
     maxlength: 20,
-    match: /^[a-zA-Z0-9]+$/,
   },
   bio: {
     skinDescription: {
