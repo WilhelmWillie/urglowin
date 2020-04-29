@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import Link from "next/link";
 
 import { Container, Row, Column } from "./style";
 import Button from "./Button";
@@ -15,7 +16,9 @@ const LandingHero = () => {
 
             <p>Curated skincare product recommendations for your skin</p>
 
-            <Button>Take the Quiz</Button>
+            <Link href="/quiz" passHref>
+              <Button>Take the Quiz</Button>
+            </Link>
           </TextColumn>
 
           <Column width={"25%"}>

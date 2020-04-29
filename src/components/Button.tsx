@@ -10,6 +10,7 @@ const Button = styled.button`
   padding: 18px;
   text-align: center;
   text-decoration: none;
+  cursor: pointer;
 
   ${({outline}) => outline && `
     border: 2px solid #3298F9;
