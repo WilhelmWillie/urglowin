@@ -62,6 +62,12 @@ const ModalBody = styled.div`
   max-height: 80vh;
   overflow-y: scroll;
 
+  @media screen and (max-width: 768px) {
+    padding: 24px;
+    max-height: 60vh;
+    max-width: 70vw;
+  }
+
   ${({maxWidth}) => maxWidth && `max-width: ${maxWidth}px;`}
 
   p {

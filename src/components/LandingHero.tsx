@@ -46,10 +46,18 @@ const Background = styled.img`
   right: 0;
   height: 200%;
   z-index: -1;
+
+  @media screen and (max-width: 768px) {
+    display: none;
+  }
 `;
 
 const Girl = styled.img`
-  max-width: 100%
+  max-width: 100%;
+
+  @media screen and (max-width: 768px) {
+    display: none;
+  }
 `;
 
 export default LandingHero;

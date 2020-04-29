@@ -115,6 +115,10 @@ const ProductBrand = styled.h2`
   font-family: GintoNord;
   font-size: 18px;
   color: #1E1E1E;
+
+  @media screen and (max-width: 768px) {
+    margin-top: 18px;
+  }
 `;
 
 const ProductHeader = styled.h1`
@@ -153,6 +157,10 @@ const ProductBar = styled.div`
   margin-top: 32px;
   justify-content: space-around;
   border-radius: 8px;
+
+  @media screen and (max-width: 768px) {
+    flex-direction: column;
+  }
 `;
 
 const ProductBarDetail = styled.div`
@@ -179,6 +187,10 @@ const ProductBarDetailPill = styled.span`
   padding: 6px 10px;
   border-radius: 4px;
   margin-bottom: 6px;
+
+  @media screen and (max-width: 768px) {
+    margin-right: 6px;
+  }
 `;
 
 const ProductBarDetailPrice = styled.span`

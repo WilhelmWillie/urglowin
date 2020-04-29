@@ -57,6 +57,10 @@ const Wrapper = styled.div`
 const Logo = styled.img`
   height: 24px;
   cursor: pointer;
+
+  @media screen and (max-width: 768px) {
+    margin-bottom: 18px;
+  }
 `;
 
 const A = styled.a`
@@ -64,6 +68,10 @@ const A = styled.a`
   color: #1E1E1E;
   margin-left: 32px;
   cursor: pointer;
+
+  @media screen and (max-width: 768px) {
+    margin: 10px 0;
+  }
 `;
 
 const Login = styled(Button)`
@@ -71,6 +79,10 @@ const Login = styled(Button)`
   padding: 12px 24px;
   text-decoration: none;
   cursor: pointer;
+
+  @media screen and (max-width: 768px) {
+    margin: 12px 0;
+  }
 `;
 
 const Profile = styled.a`
@@ -80,6 +92,10 @@ const Profile = styled.a`
     width: 44px;
     height: 44px;
     border-radius:  100%;
+  }
+
+  @media screen and (max-width: 768px) {
+    margin: 18px auto 0;
   }
 `;
 

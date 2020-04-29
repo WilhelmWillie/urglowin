@@ -41,7 +41,7 @@ const Ingredient = styled.p`
 `;
 
 const Ingredients = styled.div`
-  padding: 32px 0px;
+  padding: 32px;
   background-color: #F6F6F6;
   max-width: 768px;
   margin: 48px auto 0;

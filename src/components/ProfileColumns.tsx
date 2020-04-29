@@ -127,6 +127,11 @@ const Wrapper = styled.div`
 const ProfilePic = styled.img`
   border-radius: 8px;
   margin-bottom: 16px;
+
+  @media screen and (max-width: 768px) {
+    height: 100%;
+    width: 100%;
+  }
 `;
 
 const ColumnWithLeftPadding = styled(Column)`
@@ -147,6 +152,11 @@ const ColumnWithLeftPadding = styled(Column)`
     font-size: 24px;
     margin: 12px 0;
     color: #555555;
+  }
+
+  @media screen and (max-width: 768px) {
+    margin-left: 0;
+    margin-top: 32px;
   }
 `;
 
@@ -223,6 +233,10 @@ const ProfileDetail = styled.p`
     color: #FFFFFF;
     padding: 4px;
     font-size: 18px;
+  }
+
+  @media screen and (max-width: 768px) {
+    margin-bottom: 32px;
   }
 `;
 

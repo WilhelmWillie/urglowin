@@ -3,8 +3,12 @@ import Router from 'next/router';
 import fetch from "isomorphic-unfetch";
 
 import { NavBar, MetaTags, Footer, ProfileColumns, LoginModal } from "../../components";
+import useUpdateUser from "../../hooks/useUpdateUser";
+import getUser from "../../utils/getUser";
 
-const Profile = ({ user }) => {
+const Profile = ({ user, loggedInUser }) => {
+  useUpdateUser(loggedInUser);
+
   return (
     <>
       <MetaTags 
@@ -20,6 +24,8 @@ const Profile = ({ user }) => {
 };
 
 Profile.getInitialProps = async ({req, query}) => {
+  const loggedInUser = await getUser(req);
+
   const host = process.env.URL || 'http://localhost:3000';
   const route = `user/${query.username}`;
   const url = req ? `${host}/api/${route}` : `/api/${route}`;
@@ -38,7 +44,7 @@ Profile.getInitialProps = async ({req, query}) => {
     }
   }
 
-  return { user }
+  return { user, loggedInUser }
 }
 
 export default Profile;
