@@ -7,7 +7,10 @@ import { NavBar, MetaTags, Footer, ProfileColumns, LoginModal } from "../../comp
 const Profile = ({ user }) => {
   return (
     <>
-      <MetaTags />
+      <MetaTags 
+        title={user && `URGLOWIN - ${user.firstName} ${user.lastName}'s URGLOWIN Profile`}
+        description={user && `Check out ${user.firstName} ${user.lastName}'s URGLOWIN profile. Learn about their skin type, preferences, and favorite products!`}
+      />
       <NavBar />
       {user && <ProfileColumns user={user} isPublicView={true} />}
       <Footer />

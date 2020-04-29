@@ -20,7 +20,10 @@ const Explore = ({ products, categories, query, user}) => {
 
   return (
     <>
-      <MetaTags />
+      <MetaTags 
+        title="URGLOWIN - Explore"
+        description="Explore featured skincare products on URGLOWIN. Learn about products that will work best for your skin type and preferences"
+      />
       <NavBar />
       {/*<SearchBox />*/}
       <HeaderSection />

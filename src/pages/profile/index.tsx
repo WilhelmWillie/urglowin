@@ -23,7 +23,10 @@ const Profile = ({ initUser }) => {
   
   return (
     <>
-      <MetaTags />
+      <MetaTags 
+        title="URGLOWIN - Your Profile"
+        description="Your URGLOWIN profile"
+      />
       <NavBar />
       {user && <ProfileColumns user={user} />}
       <Footer />
