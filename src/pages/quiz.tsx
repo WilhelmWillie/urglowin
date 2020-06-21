@@ -17,7 +17,9 @@ const Quiz = ({ user }) => {
         <h1>URGLOWIN Quiz ✨</h1>
 
         <p>Welcome to URGLOWIN! To get started, take this in-depth quiz so we can understand your skin. Once we've analyzed your input, you'll received curated product information matched to your concerns!</p>
-        <iframe id="my_typeform" src="https://jennychung1.typeform.com/to/J0Jpye"></iframe>
+        
+        <h3 style={{marginTop: 20}}>Quiz under construction, check back later.</h3>
+        {/* <iframe id="my_typeform" src="https://jennychung1.typeform.com/to/J0Jpye"></iframe> */}
       </QuizContainer>
       <Footer />
       <LoginModal />
